@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "applications",
+  "info": {
+    "singularName": "application",
+    "pluralName": "applications",
+    "displayName": "application"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "semester": {
+      "type": "integer",
+      "required": true,
+      "default": 1
+    },
+    "year": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}
