@@ -629,6 +629,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::comment.comment'
     >;
+    picture: Attribute.Media;
+    address: Attribute.RichText;
+    birthdate: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -882,38 +885,6 @@ export interface ApiPostPost extends Schema.CollectionType {
   };
 }
 
-export interface ApiUserProfileUserProfile extends Schema.CollectionType {
-  collectionName: 'user_profiles';
-  info: {
-    singularName: 'user-profile';
-    pluralName: 'user-profiles';
-    displayName: 'UserProfile';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    picture: Attribute.Media;
-    address: Attribute.RichText;
-    birthdate: Attribute.Date;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::user-profile.user-profile',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::user-profile.user-profile',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/strapi' {
   export module Shared {
     export interface ContentTypes {
@@ -935,7 +906,6 @@ declare module '@strapi/strapi' {
       'api::comment.comment': ApiCommentComment;
       'api::event.event': ApiEventEvent;
       'api::post.post': ApiPostPost;
-      'api::user-profile.user-profile': ApiUserProfileUserProfile;
     }
   }
 }

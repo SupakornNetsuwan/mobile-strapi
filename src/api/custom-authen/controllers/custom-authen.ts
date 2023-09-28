@@ -22,7 +22,9 @@ export default {
         strapi.log.info("พบผู้ใช้งานในฐานข้อมูล 🟢", existUser)
         ctx.request.body.identifier = studentId + "@kmitl.ac.th"
 
-        return await strapi.plugin('users-permissions').controllers.auth.callback(ctx);
+        const response = await strapi.plugin('users-permissions').controllers.auth.callback(ctx);
+
+        return response
       } else {
         strapi.log.info("ไม่พบผู้ใช้งานในฐานข้อมูล ลองทำการค้นหาด้วย LDAP 🟡")
         const LDAPuser = await findUser(studentId, password); // ลองทำการหาจาก ฐานข้อมูล LDAP
@@ -30,7 +32,9 @@ export default {
         ctx.request.body.email = LDAPuser.email
         ctx.request.body.username = LDAPuser.fullname
 
-        return await strapi.plugin('users-permissions').controllers.auth.register(ctx);
+        const response = await strapi.plugin('users-permissions').controllers.auth.register(ctx)
+
+        return response;
       }
 
     } catch (err) {

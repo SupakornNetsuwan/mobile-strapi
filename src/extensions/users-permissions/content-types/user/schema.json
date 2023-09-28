@@ -82,6 +82,19 @@
       "relation": "oneToMany",
       "target": "api::comment.comment",
       "mappedBy": "owner"
+    },
+    "picture": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "address": {
+      "type": "richtext"
+    },
+    "birthdate": {
+      "type": "date"
     }
   }
 }
