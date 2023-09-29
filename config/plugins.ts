@@ -11,7 +11,7 @@ export default ({ env }) => ({
         config: {
             provider: 'local',
             providerOptions: {
-                sizeLimit: 1000000,
+                sizeLimit: 10000000,
             },
         },
     },
