@@ -632,6 +632,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     picture: Attribute.Media;
     address: Attribute.RichText;
     birthdate: Attribute.Date;
+    isCanCreateEvent: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
