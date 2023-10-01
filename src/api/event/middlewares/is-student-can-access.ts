@@ -13,7 +13,7 @@ export default (config, { strapi }: { strapi: Strapi }) => {
 
     const application = await strapi.entityService.findOne(
       'api::application.application',
-      1
+      2
     );
     const current_year = Number(application.year.toString().substring(2, 4))
 

@@ -11,7 +11,7 @@ export default factories.createCoreController(
             const student_year = Number(ctx.state.user.email.substring(0, 2))
             const application = await strapi.entityService.findOne(
                 'api::application.application',
-                1
+                2
             );
             const current_year = Number(application.year.toString().substring(2, 4))
             const year = current_year - student_year + 1
