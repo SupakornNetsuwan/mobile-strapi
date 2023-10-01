@@ -42,6 +42,12 @@
       "relation": "manyToMany",
       "target": "api::category.category",
       "mappedBy": "events"
+    },
+    "studentAccessYears": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::student-year.student-year",
+      "mappedBy": "events"
     }
   }
 }
