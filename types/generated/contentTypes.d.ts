@@ -829,6 +829,11 @@ export interface ApiEventEvent extends Schema.CollectionType {
       'manyToMany',
       'api::category.category'
     >;
+    studentAccessYears: Attribute.Relation<
+      'api::event.event',
+      'manyToMany',
+      'api::student-year.student-year'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -886,6 +891,43 @@ export interface ApiPostPost extends Schema.CollectionType {
   };
 }
 
+export interface ApiStudentYearStudentYear extends Schema.CollectionType {
+  collectionName: 'student_years';
+  info: {
+    singularName: 'student-year';
+    pluralName: 'student-years';
+    displayName: 'StudentYear';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    events: Attribute.Relation<
+      'api::student-year.student-year',
+      'manyToMany',
+      'api::event.event'
+    >;
+    year: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::student-year.student-year',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::student-year.student-year',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Shared {
     export interface ContentTypes {
@@ -907,6 +949,7 @@ declare module '@strapi/strapi' {
       'api::comment.comment': ApiCommentComment;
       'api::event.event': ApiEventEvent;
       'api::post.post': ApiPostPost;
+      'api::student-year.student-year': ApiStudentYearStudentYear;
     }
   }
 }
