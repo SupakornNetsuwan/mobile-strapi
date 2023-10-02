@@ -22,6 +22,7 @@ export default factories.createCoreController(
                         year: { $contains: year }
                     },
                 },
+                sort: { start: 'ASC' },
             };
 
             const response = await super.find(ctx);
