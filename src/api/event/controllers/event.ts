@@ -18,9 +18,18 @@ export default factories.createCoreController(
                 ...ctx.query,
                 populate: "*",
                 filters: {
-                    studentAccessYears: {
-                        year: { $contains: year }
-                    },
+                    $or: [
+                        {
+                            studentAccessYears: {
+                                year: { $contains: year }
+                            },
+                        },
+                        {
+                            owner: {
+                                id: ctx.state.user.id
+                            },
+                        },
+                    ]
                 },
                 sort: { start: 'ASC' },
             };
