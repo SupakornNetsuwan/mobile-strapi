@@ -26,11 +26,12 @@ export default (config, { strapi }: { strapi: Strapi }) => {
               year: { $contains: year }
             },
           },
+          owner: true
         },
       }
     );
 
-    if (event.studentAccessYears.length == 0) {
+    if (event.studentAccessYears.length == 0 && event.owner?.id != user.id) {
       return ctx.unauthorized("คุณไม่มีสิทธิ์เข้าถึงข้อมูลที่ไม่ได้รับอนุญาต");
     }
 
