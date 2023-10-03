@@ -7,7 +7,7 @@ import { factories } from '@strapi/strapi';
 export default factories.createCoreRouter('api::event.event', {
     config: {
         findOne: {
-            middlewares: ["api::event.is-student-can-access", (ctx, next) => {
+            middlewares: ["api::event.is-student-can-access", "api::event.is-staff-of-event", (ctx, next) => {
                 return next();
             }],
         },
