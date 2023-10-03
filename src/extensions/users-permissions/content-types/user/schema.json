@@ -100,11 +100,11 @@
     "isCanCreateEvent": {
       "type": "boolean"
     },
-    "participate": {
+    "activities": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::event.event",
-      "inversedBy": "staffs"
+      "relation": "oneToMany",
+      "target": "api::staff.staff",
+      "mappedBy": "staff"
     }
   }
 }
