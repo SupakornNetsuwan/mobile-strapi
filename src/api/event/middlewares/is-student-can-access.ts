@@ -32,7 +32,7 @@ export default (config, { strapi }: { strapi: Strapi }) => {
     );
 
     if (event.studentAccessYears.length == 0 && event.owner?.id != user.id) {
-      return ctx.unauthorized("คุณไม่มีสิทธิ์เข้าถึงข้อมูลที่ไม่ได้รับอนุญาต");
+      return ctx.unauthorized("กิจกรรมนี้ไม่ได้เผยแพร่ในชั้นปีของคุณ");
     }
 
     await next();
