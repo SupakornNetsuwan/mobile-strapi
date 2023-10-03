@@ -633,6 +633,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     address: Attribute.RichText;
     birthdate: Attribute.Date;
     isCanCreateEvent: Attribute.Boolean;
+    participate: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::event.event'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -833,6 +838,11 @@ export interface ApiEventEvent extends Schema.CollectionType {
       'api::event.event',
       'manyToMany',
       'api::student-year.student-year'
+    >;
+    staffs: Attribute.Relation<
+      'api::event.event',
+      'manyToMany',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

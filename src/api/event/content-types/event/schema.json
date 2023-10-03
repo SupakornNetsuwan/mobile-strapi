@@ -48,6 +48,12 @@
       "relation": "manyToMany",
       "target": "api::student-year.student-year",
       "mappedBy": "events"
+    },
+    "staffs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "participate"
     }
   }
 }
