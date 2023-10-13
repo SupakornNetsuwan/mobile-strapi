@@ -950,6 +950,7 @@ export interface ApiStudentYearStudentYear extends Schema.CollectionType {
     singularName: 'student-year';
     pluralName: 'student-years';
     displayName: 'StudentYear';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -961,6 +962,7 @@ export interface ApiStudentYearStudentYear extends Schema.CollectionType {
       'manyToMany',
       'api::event.event'
     >;
+    name: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
