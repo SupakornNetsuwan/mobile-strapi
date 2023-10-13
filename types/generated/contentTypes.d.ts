@@ -844,6 +844,7 @@ export interface ApiEventEvent extends Schema.CollectionType {
       'manyToMany',
       'api::student-year.student-year'
     >;
+    cover: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
