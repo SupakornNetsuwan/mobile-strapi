@@ -4,7 +4,8 @@
   "info": {
     "singularName": "student-year",
     "pluralName": "student-years",
-    "displayName": "StudentYear"
+    "displayName": "StudentYear",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,9 @@
       "relation": "manyToMany",
       "target": "api::event.event",
       "inversedBy": "studentAccessYears"
+    },
+    "name": {
+      "type": "string"
     }
   }
 }
