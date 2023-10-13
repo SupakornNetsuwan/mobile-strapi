@@ -11,10 +11,7 @@ export default (config, { strapi }: { strapi: Strapi }) => {
 
     const student_year = Number(user.email.substring(0, 2))
 
-    const application = await strapi.entityService.findOne(
-      'api::application.application',
-      1
-    );
+    const application = await strapi.entityService.findMany('api::application.application');
     const current_year = Number(application.year.toString().substring(2, 4))
 
     const year = (current_year - student_year + 1).toString()
@@ -29,12 +26,13 @@ export default (config, { strapi }: { strapi: Strapi }) => {
               year: { $contains: year }
             },
           },
+          owner: true
         },
       }
     );
 
-    if (event.studentAccessYears.length == 0) {
-      return ctx.unauthorized("คุณไม่มีสิทธิ์เข้าถึงข้อมูลที่ไม่ได้รับอนุญาต");
+    if (event.studentAccessYears.length == 0 && event.owner?.id != user.id) {
+      return ctx.unauthorized("กิจกรรมนี้ไม่ได้เผยแพร่ในชั้นปีของคุณ");
     }
 
     await next();

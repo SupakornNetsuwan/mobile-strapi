@@ -633,6 +633,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     address: Attribute.RichText;
     birthdate: Attribute.Date;
     isCanCreateEvent: Attribute.Boolean;
+    activities: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::staff.staff'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -829,11 +834,17 @@ export interface ApiEventEvent extends Schema.CollectionType {
       'manyToMany',
       'api::category.category'
     >;
+    staffs: Attribute.Relation<
+      'api::event.event',
+      'oneToMany',
+      'api::staff.staff'
+    >;
     studentAccessYears: Attribute.Relation<
       'api::event.event',
       'manyToMany',
       'api::student-year.student-year'
     >;
+    cover: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -891,25 +902,65 @@ export interface ApiPostPost extends Schema.CollectionType {
   };
 }
 
-export interface ApiStudentYearStudentYear extends Schema.CollectionType {
-  collectionName: 'student_years';
+export interface ApiStaffStaff extends Schema.CollectionType {
+  collectionName: 'staffs';
   info: {
-    singularName: 'student-year';
-    pluralName: 'student-years';
-    displayName: 'StudentYear';
+    singularName: 'staff';
+    pluralName: 'staffs';
+    displayName: 'Staff';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
+    event: Attribute.Relation<
+      'api::staff.staff',
+      'manyToOne',
+      'api::event.event'
+    >;
+    staff: Attribute.Relation<
+      'api::staff.staff',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    position: Attribute.String;
+    duty: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::staff.staff',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::staff.staff',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiStudentYearStudentYear extends Schema.CollectionType {
+  collectionName: 'student_years';
+  info: {
+    singularName: 'student-year';
+    pluralName: 'student-years';
+    displayName: 'StudentYear';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    year: Attribute.Integer;
     events: Attribute.Relation<
       'api::student-year.student-year',
       'manyToMany',
       'api::event.event'
     >;
-    year: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -949,6 +1000,7 @@ declare module '@strapi/strapi' {
       'api::comment.comment': ApiCommentComment;
       'api::event.event': ApiEventEvent;
       'api::post.post': ApiPostPost;
+      'api::staff.staff': ApiStaffStaff;
       'api::student-year.student-year': ApiStudentYearStudentYear;
     }
   }

@@ -21,7 +21,7 @@ export default async (policyContext, config, { strapi }) => {
     const canDoSomething = user.id == event.owner.id;
 
     if (!canDoSomething) {
-      throw new PolicyError('คุณไม่มีสิทธิ์เข้าถึงข้อมูลที่ไม่ได้รับอนุญาต', { policy: 'is-event-owner' })
+      throw new PolicyError('คุณไม่ใช่เจ้าของกิจกรรมนี้', { policy: 'is-event-owner' })
     } else {
       return true;
     }

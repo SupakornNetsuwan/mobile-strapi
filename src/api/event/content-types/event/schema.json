@@ -43,11 +43,27 @@
       "target": "api::category.category",
       "mappedBy": "events"
     },
+    "staffs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::staff.staff",
+      "mappedBy": "event"
+    },
     "studentAccessYears": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::student-year.student-year",
       "mappedBy": "events"
+    },
+    "cover": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
