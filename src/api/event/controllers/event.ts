@@ -16,7 +16,22 @@ export default factories.createCoreController(
 
             ctx.query = {
                 ...ctx.query,
-                populate: "*",
+                populate: {
+                    cover:{
+                        fields:["url", "width", "height"]
+                    },
+                    owner:{
+                        fields:["id" ]
+                    },
+                    staffs:{
+                        fields:["position", "duty"],
+                        populate:{
+                            staff:{
+                                fields:["id"]
+                            }
+                        }
+                    }
+                },
                 filters: {
                     $or: [
                         {
