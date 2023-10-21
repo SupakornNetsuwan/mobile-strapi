@@ -924,8 +924,10 @@ export interface ApiStaffStaff extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    position: Attribute.String;
-    duty: Attribute.String;
+    position: Attribute.String &
+      Attribute.DefaultTo<'\u0E2A\u0E15\u0E32\u0E1F'>;
+    duty: Attribute.String &
+      Attribute.DefaultTo<'\u0E17\u0E31\u0E48\u0E27\u0E44\u0E1B'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
