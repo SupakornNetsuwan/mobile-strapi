@@ -25,10 +25,13 @@
       "inversedBy": "activities"
     },
     "position": {
-      "type": "string"
+      "type": "string",
+      "required": false,
+      "default": "สตาฟ"
     },
     "duty": {
-      "type": "string"
+      "type": "string",
+      "default": "ทั่วไป"
     }
   }
 }
