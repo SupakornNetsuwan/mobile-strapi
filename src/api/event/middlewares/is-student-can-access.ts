@@ -29,8 +29,12 @@ export default (config, { strapi }: { strapi: Strapi }) => {
           owner: true
         },
       }
-    );
+    )
 
+    if (!event) {
+      return ctx.unauthorized("กิจกรรมนี้ไม่ได้เผยแพร่ในชั้นปีของคุณ");
+    }
+    
     if (event.studentAccessYears.length == 0 && event.owner?.id != user.id) {
       return ctx.unauthorized("กิจกรรมนี้ไม่ได้เผยแพร่ในชั้นปีของคุณ");
     }
